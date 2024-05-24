@@ -8,26 +8,37 @@ function validarQuantidadeProdutos(aQuantidade){
   return aQuantidade > 0;
 }
 
-function registrarVenda(){
-  let produto = "Arroz";
-  let quantidade = 0;
-  let precoUnitario = 10.5;
-  let dataTransacao = "2024-05-21"; 
+function validarPrecoUnitario(oPrecoUnitario){
+  //RN.03 - Validação Preço Unitário
+  return oPrecoUnitario > 0;
+}
+
+function registrarDataTransacao(){
+  //RN.04 - registro da data da transação
+ return new Date().toLocaleString() ;
+}
+
+function registrarVenda(produto, quantidade, precoUnitario){
+    let dataTransacao = registrarDataTransacao(); 
 
   let validaCamposObrigatorios = validarCamposObrigatorios(produto, quantidade, precoUnitario, dataTransacao);
   let validaQuantidadeProdutos = validarQuantidadeProdutos(quantidade)
+  let validaPrecoUnitario = validarPrecoUnitario(precoUnitario);
 
   if(validaCamposObrigatorios){
     if(validaQuantidadeProdutos){
-      alert("Transação realizada com sucesso! Produto: " + produto + " ,Quantidade: " + quantidade + " Preço Unitário:R$ " + precoUnitario + " Data da Transação: " + dataTransacao );
+      if(validaPrecoUnitario){
+      alert("Transação realizada com sucesso! Produto: " + produto + " ,Quantidade: " + quantidade + " Preço Unitário:R$ " + precoUnitario + " Data da Transação: " + dataTransacao);
     } else {
       alert("Problemas na Validação de Quantidade de Produtos!")   
     }
   } else {
       alert("Problemas na validação de campos obrigatórios!");
   }
+  }
 }
 
-registrarVenda("fim");
-
+registrarVenda("arroz", 5 , 10);
+registrarVenda("feijão", 20, 25);
+registrarVenda("farofa", 10, 3, 40);
 
