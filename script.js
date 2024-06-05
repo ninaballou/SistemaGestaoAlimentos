@@ -22,7 +22,16 @@ function gerarNumeroTransacao() {
   // RN 0.5 geração de numero de transação unico
   return Math.floor(Math.random()*10000);
 }
+function registrarHistoricoAlteracao(aMensagem){
+  
+ const ulHistoricoAlteracao = document.getElementById("historicoAlteracao");
+  
+  const liHistorico = document.createElement("li");
 
+  liHistorico.textContent = aMensagem;
+  
+  ulHistoricoAlteracao.appendChild(liHistorico); ,
+}
 function registrarVenda(produto, quantidade, precoUnitario){
     let dataTransacao = registrarDataTransacao(); 
     let numeroTransacao = gerarNumeroTransacao();
@@ -34,16 +43,27 @@ function registrarVenda(produto, quantidade, precoUnitario){
   if(validaCamposObrigatorios){
     if(validaQuantidadeProdutos){
       if(validaPrecoUnitario){
-      alert("["+numeroTransacao+"] Transação reagistrada! Produto: " + produto + " ,Quantidade: " + quantidade + " Preço Unitário:R$ " + precoUnitario + " Data da Transação: " + dataTransacao);
-    } else {
-      alert("Problemas na Validação de Quantidade de Produtos!")   
+        return ("["+numeroTransacao+"] Transação registrada! Produto: " + produto + " ,Quantidade: " + quantidade + " Preço Unitário:R$ " + precoUnitario + " Data da Transação: " + dataTransacao);
+      } else {
+        return ("Problemas na validação do Preço Unitário");
+      }
+      } else {
+        return ("Problemas na Validação de Quantidade de Produtos!")   
+      }
+      } else {
+        return ("Problemas na validação de campos obrigatórios!");
     }
-  } else {
-      alert("Problemas na validação de campos obrigatórios!");
   }
-  }
+
+function vender(){
+  let produto = document.getElementById("produto").value;
+  let quantidade = document.getElementById("quantidade").value;
+  let precoUnitario = document.getElementById("preco").value;
+
+  const mensagem = registrarVenda(produto, quantidade, precoUnitario);
+
+  registrarHistoricoAlteracao(mensagem);
 }
 
-registrarVenda("arroz", 5 , 10);
 
 
