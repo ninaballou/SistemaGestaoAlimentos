@@ -30,7 +30,7 @@ function registrarHistoricoAlteracao(aMensagem){
 
   liHistorico.textContent = aMensagem;
   
-  ulHistoricoAlteracao.appendChild(liHistorico); ,
+  ulHistoricoAlteracao.appendChild(liHistorico); 
 }
 function registrarVenda(produto, quantidade, precoUnitario){
     let dataTransacao = registrarDataTransacao(); 
